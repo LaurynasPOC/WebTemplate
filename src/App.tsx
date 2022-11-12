@@ -1,16 +1,24 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom'
 import { GlobalStyle } from "./styles/globalStyles";
 import { ContentWrapper } from './components/wrappers/ContentWrapper'
-import { Container } from './components/wrappers/Container'
+import NavBar from "./components/NavBar/NavBar";
+import TopSection from "./pages/TopSection";
 
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <ContentWrapper>
-        lol
-      </ContentWrapper>
+      <Router>
+        <GlobalStyle />
+        <NavBar />
+        <TopSection />
+      </Router>
     </>
+
   );
 }
 

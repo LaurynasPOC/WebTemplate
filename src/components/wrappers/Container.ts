@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import { tablet } from "../../styles/breakpoints";
 
 interface ContainerStyles {
