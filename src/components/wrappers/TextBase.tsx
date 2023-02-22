@@ -29,9 +29,9 @@ export const TextBase = styled.p<TextBaseProps>`
 	opacity: ${({ opacity }) => opacity || ''};
 	width: ${({ width }) => width || ''};
 	@media ${desktop} {
-		font-size: 20px;
+		font-size: ${({ fontSize }) => fontSize || '20px'};
 	}
 	@media ${mobile} {
-		font-size: 16px;
+		font-size: ${({ fontSize }) => fontSize || '16px'};
 	}
 `;

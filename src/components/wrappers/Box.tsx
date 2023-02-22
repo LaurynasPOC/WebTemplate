@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 interface BoxProps {
-	margin?: string | number;
-	padding?: string | number;
+	margin?: string;
+	padding?: string;
 	border?: string;
-	textAlign?: string | number;
+	textAlign?: string;
 	borderRadius?: string;
-	width?: string | number;
-	height?: string | number;
-	maxWidth?: string | number;
+	width?: string;
+	height?: string;
+	maxWidth?: string;
 	gridRow?: string | number;
 	position?: string;
 }
