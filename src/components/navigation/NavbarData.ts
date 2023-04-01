@@ -1,26 +1,26 @@
 export const NavbarData = [
 	{
-		to: '/#vision',
-		text: 'Our Story',
+		to: '/#only',
+		text: 'only',
 	},
 	{
-		to: '/#how-it-works',
-		text: 'How It Works',
+		to: '/#css',
+		text: 'css',
 	},
 	{
-		to: '/#roadmap',
-		text: 'Roadmap',
+		to: '/#navigation',
+		text: 'navigation',
 	},
-	{
-		to: '/#tokenomics',
-		text: 'Tokenomics',
-	},
-	{
-		to: '/blog',
-		text: 'Blog',
-	},
-	{
-		to: '/contact',
-		text: 'Contact Us',
-	},
+	// {
+	// 	to: '/#',
+	// 	text: '',
+	// },
+	// {
+	// 	to: '/',
+	// 	text: '',
+	// },
+	// {
+	// 	to: '/',
+	// 	text: '',
+	// },
 ];

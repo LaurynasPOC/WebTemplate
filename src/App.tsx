@@ -1,15 +1,19 @@
 import React from 'react';
 import { GlobalStyle } from '@styles/globalStyles';
-import Tooltip from '@components/Tooltip';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Navbar from '@components/navigation/Navbar';
+import Home from '@pages/Home';
 
 const App = () => {
 	return (
 		<>
 			<GlobalStyle />
-			IT'S Alive!!!
-			<div style={{ margin: '100px' }}>
-				<Tooltip tooltipText='Thissda'>Tooltop</Tooltip>
-			</div>
+			<Router>
+				<Navbar />
+				<Routes>
+					<Route path='/' element={<Home />} />
+				</Routes>
+			</Router>
 		</>
 	);
 };

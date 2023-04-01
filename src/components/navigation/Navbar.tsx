@@ -2,7 +2,6 @@ import React from 'react';
 import { Box } from '@components/wrappers';
 import { NavbarData } from './NavbarData';
 import styled from 'styled-components';
-import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
 import { HashLink, SimpleLink } from '../links';
 import MobNavbar from './MobNavbar';
 import { useQuery } from '@styles/breakpoints';
@@ -20,9 +19,6 @@ export const NavbarStyles = styled.nav`
 	align-items: center;
 	background: rgba(0, 0, 0, 0.3);
 	backdrop-filter: blur(15px);
-	& > a > svg {
-		width: 140px;
-	}
 	& > div:first-of-type > a {
 		font-size: 16px;
 		font-weight: 600;
@@ -43,9 +39,7 @@ const Navbar: React.FC = () => {
 	const { isDesktop } = useQuery();
 	return !isDesktop ? (
 		<NavbarStyles>
-			<HashLink to='/'>
-				<Logo />
-			</HashLink>
+			<HashLink to='/'>Logo</HashLink>
 			<Box>
 				{NavbarData.map(({ to, text }) => (
 					<HashLink key={text} to={to}>
@@ -54,11 +48,11 @@ const Navbar: React.FC = () => {
 				))}
 			</Box>
 			<Box>
-				<SimpleLink href='https://m.tiptop.io/'>
+				<SimpleLink href=''>
 					<Button variant='primary'>Marketplace</Button>
 				</SimpleLink>
-				<HashLink to='/reps'>
-					<Button>Representatives</Button>
+				<HashLink to=''>
+					<Button>Contact us</Button>
 				</HashLink>
 			</Box>
 		</NavbarStyles>

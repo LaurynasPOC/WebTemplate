@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
-import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
+import React from 'react';
 import { HashLink } from '@components/links';
-import { Box } from '@components/wrappers';
 import styled from 'styled-components';
 import { NavbarData } from './NavbarData';
 import { SimpleLink } from '@components/links';
 
-interface MobNavProps {
-	isOpen: boolean;
-}
+const NavbarController = styled.div`
+	--bar-width: 30px;
+	--bar-height: 4px;
+	--hamburger-gap: 6px;
+	--foreground: var(--text);
+	--background: var(--lbg);
+	--hamburger-margin: 20px;
+	--animation-timing: 200ms ease-in-out;
+	--hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
 
-const NavbarController = styled.div<MobNavProps>`
 	width: 100%;
+	height: 60px;
 	padding: 15px 20px;
 	position: fixed;
 	z-index: 99;
@@ -22,95 +26,103 @@ const NavbarController = styled.div<MobNavProps>`
 	align-items: center;
 	background: rgba(0, 0, 0, 0.3);
 	backdrop-filter: blur(15px);
-	& > a > svg {
-		width: 140px;
-	}
-	& > div {
+
+	& > label {
+		--x-width: calc(var(--hamburger-height) * 1.41421356237);
 		display: flex;
-		justify-content: center;
 		flex-direction: column;
-		width: 30px;
-		height: 30px;
-		margin: 10px;
+		gap: var(--hamburger-gap);
+		width: max-content;
+		position: absolute;
+		top: var(--hamburger-margin);
+		right: var(--hamburger-margin);
+		z-index: 2;
 		cursor: pointer;
-		div {
-			width: 30px;
-			height: 0.3em;
-			margin: 3px 0;
-			background-color: ${({ isOpen }) => (isOpen ? 'var(--lbg)' : 'var(--subtext)')};
-			border-radius: 20px;
-			transition: all 0.5s;
-			box-shadow: 0 0 0 1px white;
-			:first-of-type {
-				transform: ${({ isOpen }) => isOpen && 'rotate3d(0, 0, 1, 45deg) translate(3.5px, 3px)'};
-			}
-			:nth-of-type(2) {
-				display: ${({ isOpen }) => isOpen && 'none'};
-			}
-			:last-of-type {
-				transform: ${({ isOpen }) => isOpen && 'rotate3d(0, 0, 1, 135deg) translate(-3.7px, 3px)'};
-			}
+
+		:has(input:checked) {
+			--foreground: white;
+			--background: var(--lbg);
+		}
+		:has(input:focus-visible)::before,
+		:has(input:focus-visible)::after,
+		input:focus-visible {
+			border: 1px solid var(--background);
+			box-shadow: 0 0 0 1px var(--foreground);
+		}
+
+		::before,
+		::after,
+		input {
+			content: '';
+			width: var(--bar-width);
+			height: var(--bar-height);
+			background-color: var(--foreground);
+			border-radius: 9999px;
+			transform-origin: left center;
+			transition: opacity var(--animation-timing), width var(--animation-timing), rotate var(--animation-timing),
+				translate var(--animation-timing), background-color var(--animation-timing);
+		}
+
+		input {
+			appearance: none;
+			padding: 0;
+			margin: 0;
+			outline: none;
+			pointer-events: none;
+		}
+
+		:has(input:checked)::before {
+			rotate: 45deg;
+			width: var(--x-width);
+			translate: 0 calc(var(--bar-height) / -2);
+		}
+
+		:has(input:checked)::after {
+			rotate: -45deg;
+			width: var(--x-width);
+			translate: 0 calc(var(--bar-height) / 2);
+		}
+
+		input:checked {
+			opacity: 0;
+			width: 0;
 		}
 	}
+	label:has(input:checked) + nav {
+		translate: 0;
+	}
 	& > nav {
-		position: fixed;
-		width: 250px;
-		padding: 30px 0;
-		top: 90px;
+		position: absolute;
+		top: 60px;
 		right: 0;
 		display: flex;
 		flex-direction: column;
+		transition: translate var(--animation-timing);
+		translate: 100%;
+		padding: 1rem;
 		background: rgba(0, 0, 0, 0.3);
-		background-color: var(--dbg);
-		backdrop-filter: blur(15px);
-		transition: all 0.5s;
-		${({ isOpen }) =>
-			isOpen
-				? `
-        transform: translateX(0);
-        opacity: 1;
-        filter: none;
-    `
-				: `
-        transform: translateX(100%);
-        opacity: 0;
-        filter: blur(5px);
-    `}
-		a {
-			font-size: 16px;
-			font-weight: 600;
-			margin: 5px 30px;
-			:nth-child(1n + 7) {
-				color: var(--lbg);
-			}
-		}
+		color: var(--background);
+		max-width: 10rem;
 	}
 `;
 
 const MobNavbar: React.FC = () => {
-	const [isOpen, setIsOpen] = useState(false);
 	return (
-		<>
-			<NavbarController isOpen={isOpen}>
-				<HashLink to='/'>
-					<Logo />
-				</HashLink>
-				<Box onClick={() => setIsOpen(!isOpen)}>
-					<div />
-					<div />
-					<div />
-				</Box>
-				<nav>
-					{NavbarData.map(({ to, text }) => (
-						<HashLink key={to} to={to}>
-							{text}
-						</HashLink>
-					))}
-					<SimpleLink href='https://m.tiptop.io/'>Marketplace</SimpleLink>
-					<HashLink to='/reps'>Representatives</HashLink>
-				</nav>
-			</NavbarController>
-		</>
+		<NavbarController>
+			<HashLink to='/'>Logo</HashLink>
+			<label>
+				<input type='checkbox' />
+			</label>
+			<nav>
+				{NavbarData.map(({ to, text }) => (
+					<HashLink key={to} to={to}>
+						{text}
+					</HashLink>
+				))}
+				<SimpleLink href='https://m.tiptop.io/'>Marketplace</SimpleLink>
+				<HashLink to='/reps'>Representatives</HashLink>
+			</nav>
+		</NavbarController>
 	);
 };
 
