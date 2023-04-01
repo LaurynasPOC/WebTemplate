@@ -119,8 +119,8 @@ const MobNavbar: React.FC = () => {
 						{text}
 					</HashLink>
 				))}
-				<SimpleLink href='https://m.tiptop.io/'>Marketplace</SimpleLink>
-				<HashLink to='/reps'>Representatives</HashLink>
+				<SimpleLink href=''>Marketplace</SimpleLink>
+				<HashLink to='/'>Contact us</HashLink>
 			</nav>
 		</NavbarController>
 	);
