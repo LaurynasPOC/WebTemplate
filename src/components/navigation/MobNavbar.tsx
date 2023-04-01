@@ -5,13 +5,18 @@ import { NavbarData } from './NavbarData';
 import { SimpleLink } from '@components/links';
 
 const NavbarController = styled.div`
+	*,
+	*::after,
+	*::before {
+		box-sizing: border-box;
+	}
 	--bar-width: 30px;
 	--bar-height: 4px;
 	--hamburger-gap: 6px;
 	--foreground: var(--text);
 	--background: var(--lbg);
 	--hamburger-margin: 20px;
-	--animation-timing: 200ms ease-in-out;
+	--animation-timing: 300ms ease-in-out;
 	--hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
 
 	width: 100%;
@@ -39,17 +44,6 @@ const NavbarController = styled.div`
 		z-index: 2;
 		cursor: pointer;
 
-		:has(input:checked) {
-			--foreground: white;
-			--background: var(--lbg);
-		}
-		:has(input:focus-visible)::before,
-		:has(input:focus-visible)::after,
-		input:focus-visible {
-			border: 1px solid var(--background);
-			box-shadow: 0 0 0 1px var(--foreground);
-		}
-
 		::before,
 		::after,
 		input {
@@ -61,6 +55,8 @@ const NavbarController = styled.div`
 			transform-origin: left center;
 			transition: opacity var(--animation-timing), width var(--animation-timing), rotate var(--animation-timing),
 				translate var(--animation-timing), background-color var(--animation-timing);
+			border: 2px solid var(--background);
+			box-shadow: 0 0 0 1px var(--foreground);
 		}
 
 		input {
