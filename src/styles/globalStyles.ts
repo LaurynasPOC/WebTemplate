@@ -74,7 +74,7 @@ export const GlobalStyle = createGlobalStyle`
         --special: #35A6B6;
         --hover: #7F3F10;
     }
-    * {
+    *, *::after, *::before {
         box-sizing: border-box;
         transition: background-color .25s ease-out;
         

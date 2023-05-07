@@ -1,14 +1,10 @@
 import React from 'react';
 import Tooltip from '@components/Tooltip';
+import HexagonBgAnimation from '@components/HexagonBgAnimation';
 
 const Home: React.FC = () => {
 	return (
-		<div>
-			IT'S Alive!!!
-			<div style={{ margin: '100px' }}>
-				<Tooltip tooltipText='Thissda'>Tooltop</Tooltip>
-			</div>
-		</div>
+		<HexagonBgAnimation hexagonPerRow={10} rowCount={10}/>
 	);
 };
 
