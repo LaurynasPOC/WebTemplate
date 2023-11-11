@@ -1,11 +1,14 @@
-import React from 'react';
-import Tooltip from '@components/Tooltip';
-import HexagonBgAnimation from '@components/HexagonBgAnimation';
+import React from "react";
+import HexagonBgAnimation from "@components/HexagonBgAnimation";
 
 const Home: React.FC = () => {
-	return (
-		<HexagonBgAnimation hexagonPerRow={10} rowCount={10}/>
-	);
+  return (
+    <HexagonBgAnimation
+      evenHexagonsPerRow={10}
+      oddHexagonsPerRow={9}
+      rowCount={10}
+    />
+  );
 };
 
 export default Home;
