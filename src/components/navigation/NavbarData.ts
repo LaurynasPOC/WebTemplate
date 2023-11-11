@@ -1,26 +1,26 @@
 export const NavbarData = [
-	{
-		to: '/#only',
-		text: 'only',
-	},
-	{
-		to: '/#css',
-		text: 'css',
-	},
-	{
-		to: '/#navigation',
-		text: 'navigation',
-	},
-	// {
-	// 	to: '/#',
-	// 	text: '',
-	// },
-	// {
-	// 	to: '/',
-	// 	text: '',
-	// },
-	// {
-	// 	to: '/',
-	// 	text: '',
-	// },
+  {
+    to: "/#home",
+    text: "Home",
+  },
+  {
+    to: "/#about",
+    text: "About",
+  },
+  {
+    to: "/#team",
+    text: "Team",
+  },
+  {
+    to: "/#contacts",
+    text: "Contacts",
+  },
+  // {
+  // 	to: '/',
+  // 	text: '',
+  // },
+  // {
+  // 	to: '/',
+  // 	text: '',
+  // },
 ];
